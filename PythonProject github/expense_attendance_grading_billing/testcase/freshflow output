@@ -1,0 +1,490 @@
+========== FRESHFLOW JUICE COMPANY ==========
+
+========== TASK A: DATA PROFILE ==========
+Dataset shape: (5000, 12)
+Total rows: 5000
+Total columns: 12
+Data type: float64
+Number of dimensions: 2
+Total number of elements: 60000
+Memory used in bytes: 480000
+
+Missing values by column:
+Transaction ID : 0
+Day Index : 0
+Outlet ID : 0
+Product Code : 0
+Category Code : 0
+Quantity : 0
+Unit Price : 4
+Unit Cost : 4
+Discount Rate : 0
+Stock Before Units : 0
+Payment Code : 0
+Customer Rating : 20
+
+Minimum and maximum values:
+Transaction ID Minimum: 100001.0 Maximum: 105000.0
+Day Index Minimum: 1.0 Maximum: 30.0
+Outlet ID Minimum: 1.0 Maximum: 100.0
+Product Code Minimum: 1.0 Maximum: 8.0
+Category Code Minimum: 1.0 Maximum: 4.0
+Quantity Minimum: -2.0 Maximum: 10.0
+Unit Price Minimum: -25.0 Maximum: 1000.0
+Unit Cost Minimum: -15.0 Maximum: 149.99
+Discount Rate Minimum: 0.0 Maximum: 1.5
+Stock Before Units Minimum: 0.0 Maximum: 100.0
+Payment Code Minimum: 1.0 Maximum: 4.0
+Customer Rating Minimum: 0.0 Maximum: 8.0
+
+Expected rows: 5000
+Actual rows: 5000
+Expected columns: 12
+Actual columns: 12
+Dataset dimensions are correct.
+
+========== TASK B: INTEGRITY AUDIT ==========
+Duplicate transaction IDs: 1
+Records involved in duplicate IDs: 5
+Invalid transaction IDs: 0
+Invalid day values: 0
+Unknown outlet codes: 2
+Unknown product codes: 0
+Unknown category codes: 0
+Unknown payment codes: 0
+Product/category mismatches: 4
+Invalid quantities: 4
+Missing or invalid prices: 6
+Missing or invalid costs: 6
+Invalid discount rates: 2
+Invalid customer ratings: 3
+Missing customer ratings: 20
+Negative stock values: 0
+Zero stock values: 5
+
+========== TASK C: CLEANING STRATEGY ==========
+Original records: 5000
+Valid revenue records: 4977
+Valid profit records: 4971
+Records excluded from revenue analysis: 23
+Records excluded from profit analysis: 29
+
+Cleaning rules:
+1. Duplicate transaction IDs are held out for investigation.
+2. Missing or invalid prices are excluded from revenue analysis.
+3. Missing or invalid costs are excluded from profit analysis only.
+4. Missing customer ratings are allowed.
+5. Invalid customer ratings are not used in rating calculations.
+6. High prices and high valid discounts are flagged, not automatically deleted.
+7. Stock problems are reported separately.
+8. Original raw data remains unchanged.
+
+========== TASK D: METRIC ENGINE ==========
+Total gross sales: ₹ 3035914.98
+Total discount amount: ₹ 459157.02
+Total net revenue: ₹ 2576757.96
+Total cost of goods sold: ₹ 2225259.11
+Total gross profit: ₹ 347203.04
+Gross margin percentage: 13.47
+Average selling price: ₹ 94.31
+Average transaction value: ₹ 517.73
+Weighted discount percentage: 15.12
+
+========== TASK E: PRODUCT AND OUTLET COMPARISON ==========
+
+OUTLET-WISE PERFORMANCE
+
+ Outlet A
+Revenue: ₹ 844289.16
+Gross profit: ₹ 116215.65
+Units sold: 9047.0
+
+ Outlet B
+Revenue: ₹ 875189.57
+Gross profit: ₹ 116176.22
+Units sold: 9207.0
+
+ Outlet C
+Revenue: ₹ 857279.23
+Gross profit: ₹ 114811.18
+Units sold: 9069.0
+
+OUTLET RANKING BY REVENUE
+Outlet B ₹ 875189.57
+Outlet C ₹ 857279.23
+Outlet A ₹ 844289.16
+
+OUTLET RANKING BY GROSS PROFIT
+Outlet A ₹ 116215.65
+Outlet B ₹ 116176.22
+Outlet C ₹ 114811.18
+
+OUTLET RANKING BY UNITS SOLD
+Outlet B 9207.0 units
+Outlet C 9069.0 units
+Outlet A 9047.0 units
+
+PRODUCT-WISE PERFORMANCE
+
+ Orange Juice
+Revenue: ₹ 350346.63
+Gross profit: ₹ 52951.27
+Units sold: 3679.0
+
+ Mango Juice
+Revenue: ₹ 323682.77
+Gross profit: ₹ 29318.71
+Units sold: 3447.0
+
+ Apple Juice
+Revenue: ₹ 325931.76
+Gross profit: ₹ 48683.33
+Units sold: 3418.0
+
+ Watermelon Juice
+Revenue: ₹ 303074.91
+Gross profit: ₹ 32085.09
+Units sold: 3292.0
+
+ Banana Smoothie
+Revenue: ₹ 324831.64
+Gross profit: ₹ 50813.7
+Units sold: 3403.0
+
+ Mixed Fruit Smoothie
+Revenue: ₹ 298160.61
+Gross profit: ₹ 42733.35
+Units sold: 3164.0
+
+ Lemonade
+Revenue: ₹ 329357.52
+Gross profit: ₹ 43262.11
+Units sold: 3519.0
+
+ Iced Tea
+Revenue: ₹ 321372.13
+Gross profit: ₹ 47355.47
+Units sold: 3401.0
+
+PRODUCT RANKING BY REVENUE
+Orange Juice ₹ 350346.63
+Lemonade ₹ 329357.52
+Apple Juice ₹ 325931.76
+Banana Smoothie ₹ 324831.64
+Mango Juice ₹ 323682.77
+Iced Tea ₹ 321372.13
+Watermelon Juice ₹ 303074.91
+Mixed Fruit Smoothie ₹ 298160.61
+
+PRODUCT RANKING BY GROSS PROFIT
+Orange Juice ₹ 52951.27
+Banana Smoothie ₹ 50813.7
+Apple Juice ₹ 48683.33
+Iced Tea ₹ 47355.47
+Lemonade ₹ 43262.11
+Mixed Fruit Smoothie ₹ 42733.35
+Watermelon Juice ₹ 32085.09
+Mango Juice ₹ 29318.71
+
+PRODUCT RANKING BY UNITS SOLD
+Orange Juice 3679.0 units
+Lemonade 3519.0 units
+Mango Juice 3447.0 units
+Apple Juice 3418.0 units
+Banana Smoothie 3403.0 units
+Iced Tea 3401.0 units
+Watermelon Juice 3292.0 units
+Mixed Fruit Smoothie 3164.0 units
+
+Note: Highest sales volume does not always mean highest profit.
+Profit also depends on selling price, unit cost and discount.
+
+========== TASK F: DESCRIPTIVE STATISTICS ==========
+
+NET REVENUE STATISTICS
+Mean: 517.73
+Median: 413.9
+Standard deviation: 406.6
+Variance: 165324.87
+Minimum: 14.68
+Maximum: 6142.5
+Range: 6127.82
+25th percentile: 189.52
+50th percentile: 413.9
+75th percentile: 750.16
+Extreme revenue records: 64
+Interpretation: Revenue may be positively skewed.
+Extreme values should be investigated, not automatically deleted.
+
+GROSS PROFIT STATISTICS
+Mean: 69.85
+Median: 36.53
+Standard deviation: 391.94
+25th percentile: -128.01
+75th percentile: 248.18
+
+========== TASK G: DAILY TREND ANALYSIS ==========
+
+DAILY REVENUE
+Day 1 Revenue: ₹ 87810.85
+Day 2 Revenue: ₹ 95656.66
+Day 3 Revenue: ₹ 97756.99
+Day 4 Revenue: ₹ 80812.18
+Day 5 Revenue: ₹ 90848.56
+Day 6 Revenue: ₹ 78249.85
+Day 7 Revenue: ₹ 77398.08
+Day 8 Revenue: ₹ 92061.68
+Day 9 Revenue: ₹ 78728.96
+Day 10 Revenue: ₹ 70759.12
+Day 11 Revenue: ₹ 71577.69
+Day 12 Revenue: ₹ 90149.92
+Day 13 Revenue: ₹ 92859.15
+Day 14 Revenue: ₹ 82270.04
+Day 15 Revenue: ₹ 95268.3
+Day 16 Revenue: ₹ 64340.04
+Day 17 Revenue: ₹ 103533.46
+Day 18 Revenue: ₹ 81912.52
+Day 19 Revenue: ₹ 85126.62
+Day 20 Revenue: ₹ 80319.32
+Day 21 Revenue: ₹ 92305.53
+Day 22 Revenue: ₹ 82124.93
+Day 23 Revenue: ₹ 96555.05
+Day 24 Revenue: ₹ 75065.44
+Day 25 Revenue: ₹ 91993.89
+Day 26 Revenue: ₹ 84603.33
+Day 27 Revenue: ₹ 86541.7
+Day 28 Revenue: ₹ 100745.47
+Day 29 Revenue: ₹ 76462.65
+Day 30 Revenue: ₹ 92919.98
+
+DAILY ABSOLUTE CHANGES
+Day 2 Change: ₹ 7845.82
+Day 3 Change: ₹ 2100.32
+Day 4 Change: ₹ -16944.8
+Day 5 Change: ₹ 10036.37
+Day 6 Change: ₹ -12598.7
+Day 7 Change: ₹ -851.77
+Day 8 Change: ₹ 14663.59
+Day 9 Change: ₹ -13332.71
+Day 10 Change: ₹ -7969.85
+Day 11 Change: ₹ 818.57
+Day 12 Change: ₹ 18572.23
+Day 13 Change: ₹ 2709.23
+Day 14 Change: ₹ -10589.1
+Day 15 Change: ₹ 12998.26
+Day 16 Change: ₹ -30928.26
+Day 17 Change: ₹ 39193.41
+Day 18 Change: ₹ -21620.94
+Day 19 Change: ₹ 3214.1
+Day 20 Change: ₹ -4807.3
+Day 21 Change: ₹ 11986.21
+Day 22 Change: ₹ -10180.6
+Day 23 Change: ₹ 14430.13
+Day 24 Change: ₹ -21489.61
+Day 25 Change: ₹ 16928.45
+Day 26 Change: ₹ -7390.56
+Day 27 Change: ₹ 1938.37
+Day 28 Change: ₹ 14203.77
+Day 29 Change: ₹ -24282.82
+Day 30 Change: ₹ 16457.33
+
+DAILY PERCENTAGE CHANGES
+Day 2 Percentage change: 8.93
+Day 3 Percentage change: 2.2
+Day 4 Percentage change: -17.33
+Day 5 Percentage change: 12.42
+Day 6 Percentage change: -13.87
+Day 7 Percentage change: -1.09
+Day 8 Percentage change: 18.95
+Day 9 Percentage change: -14.48
+Day 10 Percentage change: -10.12
+Day 11 Percentage change: 1.16
+Day 12 Percentage change: 25.95
+Day 13 Percentage change: 3.01
+Day 14 Percentage change: -11.4
+Day 15 Percentage change: 15.8
+Day 16 Percentage change: -32.46
+Day 17 Percentage change: 60.92
+Day 18 Percentage change: -20.88
+Day 19 Percentage change: 3.92
+Day 20 Percentage change: -5.65
+Day 21 Percentage change: 14.92
+Day 22 Percentage change: -11.03
+Day 23 Percentage change: 17.57
+Day 24 Percentage change: -22.26
+Day 25 Percentage change: 22.55
+Day 26 Percentage change: -8.03
+Day 27 Percentage change: 2.29
+Day 28 Percentage change: 16.41
+Day 29 Percentage change: -24.1
+Day 30 Percentage change: 21.52
+
+3-DAY MOVING AVERAGE
+Days 1 to 3 Average revenue: ₹ 93741.5
+Days 2 to 4 Average revenue: ₹ 91408.61
+Days 3 to 5 Average revenue: ₹ 89805.91
+Days 4 to 6 Average revenue: ₹ 83303.53
+Days 5 to 7 Average revenue: ₹ 82165.5
+Days 6 to 8 Average revenue: ₹ 82569.87
+Days 7 to 9 Average revenue: ₹ 82729.57
+Days 8 to 10 Average revenue: ₹ 80516.59
+Days 9 to 11 Average revenue: ₹ 73688.59
+Days 10 to 12 Average revenue: ₹ 77495.57
+Days 11 to 13 Average revenue: ₹ 84862.25
+Days 12 to 14 Average revenue: ₹ 88426.37
+Days 13 to 15 Average revenue: ₹ 90132.5
+Days 14 to 16 Average revenue: ₹ 80626.13
+Days 15 to 17 Average revenue: ₹ 87713.93
+Days 16 to 18 Average revenue: ₹ 83262.01
+Days 17 to 19 Average revenue: ₹ 90190.86
+Days 18 to 20 Average revenue: ₹ 82452.82
+Days 19 to 21 Average revenue: ₹ 85917.16
+Days 20 to 22 Average revenue: ₹ 84916.59
+Days 21 to 23 Average revenue: ₹ 90328.5
+Days 22 to 24 Average revenue: ₹ 84581.81
+Days 23 to 25 Average revenue: ₹ 87871.46
+Days 24 to 26 Average revenue: ₹ 83887.56
+Days 25 to 27 Average revenue: ₹ 87712.97
+Days 26 to 28 Average revenue: ₹ 90630.17
+Days 27 to 29 Average revenue: ₹ 87916.61
+Days 28 to 30 Average revenue: ₹ 90042.7
+
+Highest revenue day: 17
+Highest daily revenue: ₹ 103533.46
+Lowest revenue day: 16
+Lowest daily revenue: ₹ 64340.04
+Unusual days for review:
+
+========== TASK H: DISCOUNT INVESTIGATION ==========
+
+ Low discount (0% to below 5%)
+Transactions: 732
+Quantity sold: 3925.0
+Net revenue: ₹ 418353.08
+Gross profit: ₹ 104345.8
+Gross margin: 24.94
+
+ Medium discount (5% to below 15%)
+Transactions: 1658
+Quantity sold: 9176.0
+Net revenue: ₹ 930313.24
+Gross profit: ₹ 175481.05
+Gross margin: 18.86
+
+ High discount (15% and above)
+Transactions: 2581
+Quantity sold: 14187.0
+Net revenue: ₹ 1223795.84
+Gross profit: ₹ 67376.2
+Gross margin: 5.51
+
+Discount and quantity correlation: -0.001
+
+Interpretation:
+A relationship between discount and quantity does not prove
+that discounts caused higher sales.
+Product type, outlet, day and customer behaviour may also affect sales.
+This comparison may contain selection bias and confounding.
+
+========== TASK I: ANOMALY REGISTER ==========
+High price threshold: 292.33500000000004
+High price records: 3
+High discount records: 5
+Zero stock records: 5
+Total records with at least one anomaly: 13
+
+ANOMALY REGISTER
+Transaction ID: 100052.0 | Reason: HIGH_PRICE
+Transaction ID: 100053.0 | Reason: HIGH_PRICE
+Transaction ID: 100054.0 | Reason: HIGH_PRICE
+Transaction ID: 100055.0 | Reason: HIGH_DISCOUNT
+Transaction ID: 100056.0 | Reason: HIGH_DISCOUNT
+Transaction ID: 100057.0 | Reason: HIGH_DISCOUNT
+Transaction ID: 100058.0 | Reason: HIGH_DISCOUNT
+Transaction ID: 100059.0 | Reason: HIGH_DISCOUNT
+Transaction ID: 100060.0 | Reason: ZERO_STOCK
+Transaction ID: 100061.0 | Reason: ZERO_STOCK
+Transaction ID: 100062.0 | Reason: ZERO_STOCK
+Transaction ID: 100063.0 | Reason: ZERO_STOCK
+Transaction ID: 100064.0 | Reason: ZERO_STOCK
+
+Anomalies are flagged for review, not automatically deleted.
+Financial impact is estimated only where the required data is valid.
+
+========== TASK J: SCENARIO ANALYSIS ==========
+Baseline revenue: ₹ 2572462.15
+Baseline gross profit: ₹ 347203.04
+
+Scenario discount: 5.0 %
+Scenario revenue: ₹ 2878939.57
+Scenario gross profit: ₹ 653680.46
+Revenue change: ₹ 306477.42
+Revenue change percentage: 11.91
+Profit change: ₹ 306477.42
+Profit change percentage: 88.27
+
+Scenario discount: 10.0 %
+Scenario revenue: ₹ 2727416.44
+Scenario gross profit: ₹ 502157.33
+Revenue change: ₹ 154954.28
+Revenue change percentage: 6.02
+Profit change: ₹ 154954.28
+Profit change percentage: 44.63
+
+Scenario assumptions:
+1. Quantity sold remains constant.
+2. Unit cost remains constant.
+3. Only the discount rate changes.
+4. The scenarios are not sales forecasts.
+5. Actual customer demand may change after a discount change.
+
+========== TASK K: VALIDATION TESTS ==========
+Test 1 passed: Dataset shape is valid.
+Test 2 passed: Dataset contains 5000 rows.
+Test 3 passed: Missing values are represented by NaN.
+Test 4 passed: Zero denominator is handled safely.
+Test 5 passed: Five sample rows match manual calculations.
+Test 6 passed: Original raw data remains unchanged.
+
+All validation tests completed successfully.
+
+========== TASK L: EXECUTIVE RECOMMENDATIONS ==========
+
+FINDING 1
+The highest revenue outlet is: Outlet B
+Revenue: ₹ 875189.57
+Recommendation: Review this outlet's sales practices and
+identify practices that may be useful at other outlets.
+Metric to monitor: Daily net revenue by outlet.
+
+FINDING 2
+The highest gross profit product is: Orange Juice
+Gross profit: ₹ 52951.27
+Recommendation: Review product-level pricing, cost and
+discount decisions before changing the product mix.
+Metric to monitor: Gross profit by product.
+
+FINDING 3
+The highest revenue day is: 17
+Daily revenue: ₹ 103533.46
+Recommendation: Investigate the transactions and conditions
+on this day before repeating any sales strategy.
+Metric to monitor: Daily net revenue and transaction count.
+
+LIMITATIONS
+1. The dataset covers only 30 observation days.
+2. Missing and invalid records affect the analysis.
+3. Gross profit does not include rent, salaries or other operating expenses.
+4. Correlation does not prove causation.
+5. Discount scenarios assume quantity remains unchanged.
+6. Transaction data alone cannot establish inventory waste.
+
+NEXT STEPS
+1. Review flagged transactions and data-quality issues.
+2. Monitor outlet and product performance regularly.
+3. Test discount changes before making business-wide decisions.
+4. Collect more data for stronger business conclusions.
+
+========== FRESHFLOW ASSIGNMENT COMPLETED ==========
+
+Process finished with exit code 0
